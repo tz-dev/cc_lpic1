@@ -1,3 +1,6 @@
 trash-cli
 papierkorb für kommandozeile
 
+https://ubuntuusers.de/
+portal mit allen infos rund um ubuntu
+
