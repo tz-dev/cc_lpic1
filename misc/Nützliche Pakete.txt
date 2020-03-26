@@ -1,0 +1,24 @@
+# Update & Upgrade
+sudo apt-get upgrade
+sudo apt-get update
+
+# Verbesserung zu 'top' (Prozess-Betrachter)
+sudo apt-get install htop
+
+# Systeminfo
+sudo apt-get install screenface
+
+# Datei-Browser für Konsole (+Tools)
+sudo apt-get install mc
+
+# Inhalt einer Datei in Zwischenablage kopieren (xclip -sel clip < DATEI)
+sudo apt-get install xclip
+
+# Papierkorb für Konsole (+Alias 'del' zum löschen von Dateien mit 'trash')
+sudo apt-get install trash-cli
+alias del='trash'
+
+# Editor (Desktop)
+sudo apt-get install sublime-text
+
+# 
