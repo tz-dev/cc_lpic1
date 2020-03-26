@@ -2,13 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# WICHTIG WICHTIG WICHTIG WICHTIG WICHTIG WICHTIG WICHTIG =>
-
-# Vorher ausführen:
-# sudo apt-get install fortunes screenfetch trash-cli
-
-# WICHTIG WICHTIG WICHTIG WICHTIG WICHTIG WICHTIG WICHTIG <=
-
 clear # clear screen
 echo  # insert blank line
 
@@ -57,12 +50,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -104,7 +97,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias dir='ls -lA'
 alias del='trash'
-
+alias ..='cd ..
+'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
