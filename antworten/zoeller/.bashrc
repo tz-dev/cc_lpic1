@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+###########################################################################################################
+# WICHTIG: ZUR KORREKTEN AUSFÜHRUNG VORHER AUSFÜHREN: sudo apt-get install screenfetch espeak fortunes pv #
+###########################################################################################################
+
 clear # clear screen
 echo  # insert blank line
 
@@ -50,12 +54,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-    color_prompt=
+	color_prompt=
     fi
 fi
 
@@ -97,8 +101,9 @@ alias la='ls -A'
 alias l='ls -CF'
 alias dir='ls -lA'
 alias del='trash'
-alias ..='cd ..
-'
+alias save='cmatrix -sba'
+alias ..='cd ..'
+alias bla='fortune -s > .fortune.txt | espeak -a 75 -p 10 -s 150 -f .fortune.txt'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -126,6 +131,7 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+clear
 
 # show system info
 screenfetch
@@ -133,5 +139,9 @@ screenfetch
 #insert blank line
 echo 
 
-# give wisdom
-fortune
+# give wisdom (short & offensive)
+fortune -s > .fortune.txt
+
+# greet with wisdom & type it in console
+(espeak -a 75 -p 10 -s 150 -f .fortune.txt &) # '()' surpresses job execution message, '&' lets it run in the background
+cat .fortune.txt | pv -qL 15 # 'pv' adds typewriter effect to text output
