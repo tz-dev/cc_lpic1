@@ -4,3 +4,6 @@ papierkorb für kommandozeile
 https://ubuntuusers.de/
 portal mit allen infos rund um ubuntu
 
+sudo -s
+alle folgenden befehle in der shell als root ausführen
+
