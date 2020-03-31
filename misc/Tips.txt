@@ -7,3 +7,6 @@ portal mit allen infos rund um ubuntu
 sudo -s
 alle folgenden befehle in der shell als root ausführen
 
+https://www.selflinux.org/selflinux/html/vim.html
+seite mit infos zu vim
+
