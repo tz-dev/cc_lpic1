@@ -102,7 +102,6 @@ alias l='ls -CF'
 alias dir='ls -lA'
 alias del='trash'
 alias save='cmatrix -sba'
-alias ..='cd ..'
 alias bla='fortune -s > .fortune.txt | espeak -a 75 -p 10 -s 150 -f .fortune.txt'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
