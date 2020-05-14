@@ -1,24 +1,39 @@
-# Update & Upgrade
-sudo apt-get upgrade
-sudo apt-get update
-
-# Verbesserung zu 'top' (Prozess-Betrachter)
-sudo apt-get install htop
-
-# Systeminfo
-sudo apt-get install screenface
-
-# Datei-Browser für Konsole (+Tools)
-sudo apt-get install mc
-
-# Inhalt einer Datei in Zwischenablage kopieren (xclip -sel clip < DATEI)
-sudo apt-get install xclip
-
-# Papierkorb für Konsole (+Alias 'del' zum löschen von Dateien mit 'trash')
-sudo apt-get install trash-cli
-alias del='trash'
-
-# Editor (Desktop)
-sudo apt-get install sublime-text
-
-# 
+﻿bandwidthd (tcp graph)
+baobab (hd tool)
+ddgr (duckgo from terminal)
+dfc (display file usage)
+di (advanced disk utility)
+dstat (resource stats tool)
+duc (disk usage analyzer)
+espeak (text to speech)
+fatrace (report system wide file access events)
+fortune (get some wisdom for free)
+gmemusage (mem usage with graph)
+grepmail (search mailboxes)
+htop (better top)
+iftop (show bandwidth usage)
+iotop (io monitor)
+iptotal (ip monitor)
+iwatch (filesystem notifier)
+kerneltop (kernel monitor)
+mrtg (multi router traffic grapher)
+ncrack (network auth cracking tool)
+netstress (network benchmarker)
+nload (console network usage monitor)
+nnn (file manager)
+nuttcp (network performance measurement tool)
+patator (brute-forcer)
+pktstat (network connections usage)
+procmeter3 (graphical system status monitor)
+screenfetch (show system info)
+sinfo (computer cluster monitor)
+smem (memory report tool)
+snooze (run cmd at defined time)
+systemd-bootchart (boot performance graph)
+trash-cli (recycle bin)
+tcptrack (connection tracker with stats & speeds)
+ttyrec (record & play terminal interactions)
+ttygif (create gifs from ttyrec recordings)
+welcome2l (ansi boot logo)
+xosview (x system monitor)
+zeitgeist (event logging framework)

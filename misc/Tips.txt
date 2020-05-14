@@ -1,6 +1,3 @@
-trash-cli
-papierkorb für kommandozeile
-
 https://ubuntuusers.de/
 portal mit allen infos rund um ubuntu
 
@@ -10,3 +7,7 @@ alle folgenden befehle in der shell als root ausführen
 https://www.selflinux.org/selflinux/html/vim.html
 seite mit infos zu vim
 
+In der Hinsicht kann ich den Podcast "Request for Comments" empfehlen, der Name ist hier Programm. Sinnvoll sind zum Einstieg vielleicht die Netzwerk-Episoden 3 und 4, wo es erstmal im IEEE-Standards geht (nicht Protokolle, sondern Topologien) (https://requestforcomments.de/archives/217 <https://requestforcomments.de/archives/217>  , https://requestforcomments.de/archives/240 <https://requestforcomments.de/archives/240>  ). Der Host dieses Podcasts ist Anna-Lena Becker, die bei der Deutschen Bahn für den Aufbau des WLANs zuständig ist. Die Expertise holt sie sich in aller Regel von externen Leuten ran, oft genug aus dem CCC. 
+
+
+@Till/Carsten: Weil Ihr beiden es vorhin unabhängig voneinander von Email hattet: Die Protokolle, die man für "sicher" aufgesetzte Email-Server kennen möchte, sind z.B. SPF, DKIM, DMARC, DANE, MTA-STS, (START)TLS und DNSSEC. Viele dieser Protokolle greifen ineinander. Von der Anwenderseite kommen noch PGP/GPG und S/MIME dazu, sowie SSH-Keys für den Zugang zum Server. Man könnte noch über klientenseitige Zertifikate und ähnliches nachdenken, aber da kommt man dann langsam in Sicherheits-Größenordnungen, wo ein Szenario mit Windows-Clients keinen Sinn mehr macht.
