@@ -1,3 +1,5 @@
+CrypTool 2.1 (für WIN, funktional)
+
 https://ubuntuusers.de/
 portal mit allen infos rund um ubuntu
 
@@ -11,3 +13,79 @@ In der Hinsicht kann ich den Podcast "Request for Comments" empfehlen, der Name 
 
 
 @Till/Carsten: Weil Ihr beiden es vorhin unabhängig voneinander von Email hattet: Die Protokolle, die man für "sicher" aufgesetzte Email-Server kennen möchte, sind z.B. SPF, DKIM, DMARC, DANE, MTA-STS, (START)TLS und DNSSEC. Viele dieser Protokolle greifen ineinander. Von der Anwenderseite kommen noch PGP/GPG und S/MIME dazu, sowie SSH-Keys für den Zugang zum Server. Man könnte noch über klientenseitige Zertifikate und ähnliches nachdenken, aber da kommt man dann langsam in Sicherheits-Größenordnungen, wo ein Szenario mit Windows-Clients keinen Sinn mehr macht.
+
+
+Noch mal kurz zu den Autonomen Systemen: Das ist quasi das, woraus das Internet besteht, seine kleinste Grundeinheit.  Zwischen ASen wird das BGP, das Border Garteway Protocol, gesprochen, innerhalb eines AS das IGP, das Internal Gateway Protocol.  Innerhalb eines AS gibt es eine technische Instanz, die das Routing koordiniert, und die auch im BGP announced, welche Netze und welche Hosts in diesem AS verfügbar sind, und wie man sie erreichen kann. Die größeren ISPs sind oft genug alle ein eigenes AS, die wirklich großen bestehen teils sogar aus mehreren ASen. Angesprochen werden sie über die AS Nummer ("ASN"), früher 16 Bit (65536 ASe), heute 32 (4,2 Mrd. ASe, vergleichbar der Umstellung IPv4 --> IPv6). Beim DeCIX werden genau diese ASe miteinander verbunden. Wie TCP/IP die IP-Adressen routet, routet BGP die ASe. Die AS Nummern werden von die IANA verwaltet.
+
+
+
+
+[?22.?05.?2020 11:03] Jan Böning: 
+*g*
+Nein, ganz so schlimm war es dann doch nicht.
+Nach vielen Fehlerversuchen hat folgendes funktioniert:
+[?22.?05.?2020 11:05] Jan Böning: 
+* VM (CentOS) komplett updaten + NEUSTARTEN
+[?22.?05.?2020 11:11] Jan Böning: 
+* EPEL Repository enablen. ($ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm <https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm>  , an dieser Stelle musste ich noch die URL modifizieren)
+ * folgende Pakete installieren ($ sudo yum install perl gcc dkms kernel-devel kernel-headers make bzip2, an dieser Stelle musste ich noch um das "kernel-devel" erweitern )
+* Kernel-headers auf korrekte Installation prüfen ($ ls -l /usr/src/kernels/$(uname -r) , an der Stelle hatte ich ja schon mal was gepostet, es fanden sich die nicht zueinanderpassenden Kernel zu Kernel-Headers)
+* sudo yum update   durchführen und NEUSTARTEN.
+* Gasterweiterung (ggf. vorab entfernen und) einlegen und starten. Sollten keine Fehler kommen, dann nochmal neustarten. 
+* Fertig
+
+
+
+Die Hosts-Datei liegt bei Windows unter c:\windows\system32\drivers\etc\hosts <file:///c:/windows/system32/drivers/etc/hosts>  und der Block für Facebook findet sich hier : https://github.com/jmdugan/blocklists/blob/master/corporations/facebook/all <https://github.com/jmdugan/blocklists/blob/master/corporations/facebook/all>  
+
+
+SECURITY TOKENS
+
+yubikey kann FIDO2 
+https://de.wikipedia.org/wiki/YubiKey
+
+Die Google Titan und die Goldengate Security Keys können das auch. 
+Qubes OS mit FIDO2-Keys sind so mein persönliches Wunschlevel des Technik-Aspekts von OpSec. Dazu kommt konsequentes Handeln und organisatorische OpSec.
+
+
+
+nmcli con add con-name static-enp0s3 ifname enp0s3 type ethernet ip4 10.26.37.106/24 gw4 10.26.37.1 
+
+
+
+
+
+
+[?29.?05.?2020 08:30] Jan Böning: 
+Die Signatur macht übrigens den Unterschied zwischen Authentifikation und Verifikation. Sie erlaubt die Unterscheidbarkeit zwischen der Aussage von Person X "Diese Datei kommt von Person X" und der Aussage eines Man-in-the-middle "Diese Datei kommt von Person X".
+[?29.?05.?2020 08:32] Jan Böning: 
+(zumindest solange der Private Key von Person X nicht kompromittiert ist)
+[?29.?05.?2020 08:32] Carsten Schmuck: 
+(y)
+[?29.?05.?2020 08:40] Jan Böning: 
+(...und wenn der Public Key von Person X auf einem separaten zweiten Channel überprüft wurde, z.B. vis-a-vis oder telefonisch. Andernfalls wäre auch hierüber ein Angriff möglich, weil ein Man-in-the-middle uns einen Key schicken könnte, von dem er behauptet, dass er von Person X kommt, tatsächlich kommt er aber vom Angreifer (der hätte dann nämlich auch den zugehörigen Private Key und könnte so die gesamte  Kommunikation lesen). Genau diesen Angriff verbaut man einem Mitm mit der Schlüsselverifikation auf einem zweiten Kanal.)
+[?29.?05.?2020 08:41] Daniel Twardowski: 
+top
+[?29.?05.?2020 08:56] Jan Böning: 
+Manche Leute gehen noch einen Zwischenschritt. Sie veröffentlichen ihren Public Key nicht nur auf den "offiziellen" Key-Servern (bei denen sie NICHT kontrollieren können, wer sonst noch Keys in ihrem Namen hochlädt), sondern z.B. auch auf ihrer Homepage (bei der sie sicher sein können, dass NUR sie Dateien hochladen können. Der Schlüssel liegt dann zwar an einem etwas ungewöhnlichen Ort, dafür ist der Ort (und damit der Public Key) vergleichsweise schwer manipulierbar. Fefe macht das z.B. so, weil etliche Fake-Keys seiner Emailadresse für Mitm-Angriffe auf den Schlüsselservern hochgeladen wurden. (https://blog.fefe.de/?ts=a2e795fe <https://blog.fefe.de/?ts=a2e795fe> ) 
+[?29.?05.?2020 08:59] Jan Böning: 
+Eine dritte Option ist, seinen Public Key an jede Email anzuhängen. Thunderbird sieht dafür z.B. eine simple Klick-option vor. Das ist eigentlich auch ein relativ bequemer Weg, seinen Key zu verbreiten und signalisiert den Emaillesern, dass der Absender Verschlüsselung unterstützt, ohne dass er das in seiner Email schreibt.
+[?29.?05.?2020 09:01] Jan Böning: 
+Nachteil: Key-Revocation ist schwierig, wenn man den Schlüssel nicht auch auf einem Key-Server hochlädt.
+[?29.?05.?2020 09:04] Jan Böning: 
+Deswegen einen Schlüssel am besten nie sonderlich lange gültig lassen (und erst recht nicht unbegrenzt lange), sondern lieber seine Gültigkeit nachverlängern, z.B. im Jahresrhythmus. So kann Euch spätestens nach einem Jahr ein praktisch unwiderrufbarer Key nicht mehr um die Ohren fliegen.
+[?29.?05.?2020 09:08] Daniel Twardowski: 
+supergut!
+[?29.?05.?2020 09:11] Jan Böning: 
+(GPG warnt Euch übrigens mehrmals rechtzeitig vorher, wenn Euer Schlüssel demnächst (Default: in einem Monat) abläuft. Ihr habt dann genug Zeit, den Schlüssel nachzuverlängern)
+
+
+
+Und wenn Ihr Pfingsten Unterhaltung brauchen könnt, habe ich eine schöne Seite für Euch: "Calling Bullshit" (https://callingbullshit.org/index.html <https://callingbullshit.org/index.html> ). Im Wesentlichen geht es um Media Literacy im alltäglichen Leben. Auf der Seite gibt es eine ganze Serien von Videos, in deren Verlauf man allen möglichen Bullshit zu erkennen und durchschauen lernt (https://callingbullshit.org/videos.html <https://callingbullshit.org/videos.html> ). Ist wirklich gut gemacht.
+
+
+
+[?03.?06.?2020 10:19] Jan Böning: 
+Man kann das unter Windows aber auch von Hand ändern. Ich habe bei mir z.B. ptbtime3.ptb.de eingestellt. Dieser Server müsste eigentlich auch unter Linux funktionieren, denn sowohl Windows als auch Linux nutzen dafür das gleiche NTP-Protokoll. 
+[?03.?06.?2020 10:19] Sven Kohlitz: 
+also von hause aus wirklich ntp.windows gleich mal geändert :D
