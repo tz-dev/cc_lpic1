@@ -1,6 +1,6 @@
 #! /bin/bash
 clear													# clear screen
-sentence=$(fortune -s)									# store fortune in variable
+let sentence=$(fortune -s)								# store fortune in variable
 let chars=0												# variable for word character count
 let column=0											# variable for cursor column positioning
 let line=0												# variable for cursor line positioning
